@@ -1,0 +1,1 @@
+web: bundle exec puma -w $WEB_CONCURRENCY -t 0:$WORKER_CONCURRENCY jobmensa_assets.rb
