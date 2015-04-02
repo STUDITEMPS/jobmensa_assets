@@ -10,8 +10,14 @@ set :show_exceptions, settings.environment != :production
 puts 'hallo'
 
 require 'sinatra/base'
-my_app = Sinatra.new { get('/') { "hi" } }
-my_app.run!
+
+HalloWelt = Rack::Builder.new do
+  map '/attachments' do
+    run Refile::App
+  end
+end
+
+run HalloWelt
 
 
 # Refile.configure do |config|
