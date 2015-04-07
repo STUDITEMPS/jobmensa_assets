@@ -2,6 +2,8 @@ environment = ENV['RAILS_ENV'] || ENV['RACK_ENV']
 
 Refile.configure do |config|
 
+  max_size = Integer(ENV['MAX_ATTACHMENT_SIZE'] || 10485760) # 10 megabytes
+
   if environment == 'test'
     config.cache = Refile::Backend::FileSystem.new('tmp/refile/cache', max_size: max_size)
     config.store = Refile::Backend::FileSystem.new('tmp/refile/store', max_size: max_size)
@@ -11,7 +13,7 @@ Refile.configure do |config|
       secret_access_key: ENV['AWS_SECRET_KEY'],
       bucket: ENV['AWS_S3_BUCKET'] || "jobmensa2-#{environment}",
       region: ENV['AWS_S3_REGION'] || 'eu-west-1',
-      max_size: Integer(ENV['MAX_ATTACHMENT_SIZE'] || 10485760) # 10 megabytes
+      max_size: max_size
     }
 
     config.cache = Refile::Backend::S3.new(prefix: 'cache', **aws)
