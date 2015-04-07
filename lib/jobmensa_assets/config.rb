@@ -24,11 +24,17 @@ Refile.configure do |config|
   # Configure the request origin
   config.allow_origin = '*'
 
+  # Do not mount as refile_app for rails
+  config.automount = false
+
   unless environment == 'test' # go to the app server
     host = ENV['REFILE_HOST'] || ENV['HOST_NAME']
     # cloudfront or our server
     config.host = "//#{host}"
   end
+
+  # Delete default processors and use our own processors defined below
+  config.instance_variable_set :@processors, nil
 end
 
 [:default, :convert, :limit, :fit, :fill, :pad, ].each do |name|
