@@ -6,5 +6,7 @@ require 'jobmensa_assets/xt/refile/backend/s3'
 require 'jobmensa_assets/image_processor'
 require 'jobmensa_assets/attachment_type'
 
+require 'jobmensa_assets/railtie' if defined?(Rails)
+
 module JobmensaAssets
 end
