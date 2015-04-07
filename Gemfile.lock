@@ -16,6 +16,7 @@ PATH
       puma
       rack
       refile
+      rollbar
       sinatra
 
 GEM
@@ -50,6 +51,7 @@ GEM
     mini_magick (4.2.0)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    multi_json (1.11.0)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     puma (2.11.1)
@@ -58,6 +60,8 @@ GEM
     rack-protection (1.5.3)
       rack
     rake (10.4.2)
+    rollbar (1.4.4)
+      multi_json (~> 1.3)
     rspec (3.1.0)
       rspec-core (~> 3.1.0)
       rspec-expectations (~> 3.1.0)

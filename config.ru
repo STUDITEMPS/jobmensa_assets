@@ -25,6 +25,13 @@ else
   logger
 end
 
+# configure rollbar
+if rollbar_key = ENV['ROLLBAR_ACCESS_TOKEN']
+  Rollbar.configure do |config|
+    config.access_token = rollbar_key
+  end
+end
+
 jobmensa_assets_app = Rack::Builder.new do
   map '/attachments' do
     run Refile::App
