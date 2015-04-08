@@ -33,6 +33,11 @@ if rollbar_key = ENV['ROLLBAR_ACCESS_TOKEN']
   end
 end
 
+# configure newrelic
+configure :development, :staging, :production do
+  require 'newrelic_rpm'
+end
+
 jobmensa_assets_app = Rack::Builder.new do
   map '/attachments' do
     run Refile::App
