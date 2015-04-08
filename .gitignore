@@ -14,3 +14,4 @@
 mkmf.log
 .powenv
 .ruby-version
+.ruby-gemset
