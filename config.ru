@@ -34,7 +34,7 @@ if rollbar_key = ENV['ROLLBAR_ACCESS_TOKEN']
 end
 
 # configure newrelic
-configure :development, :staging, :production do
+configure :staging, :production do
   require 'newrelic_rpm'
 end
 
