@@ -10,7 +10,7 @@ GIT
 PATH
   remote: .
   specs:
-    jobmensa_assets (0.0.1)
+    jobmensa_assets (0.1.0)
       aws-sdk (>= 1.55, < 2)
       degu
       mini_magick
