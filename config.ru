@@ -26,11 +26,17 @@ else
 end
 
 # configure rollbar
-require 'rollbar'
 if rollbar_key = ENV['ROLLBAR_ACCESS_TOKEN']
+  require 'rollbar'
   Rollbar.configure do |config|
     config.access_token = rollbar_key
   end
+end
+
+# configure logentries
+if logentries_key = ENV['LOGENTRIES_TOKEN']
+  require 'sinatra-logentries'
+  Sinatra::Logentries.token = logentries_key
 end
 
 # configure newrelic
