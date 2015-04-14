@@ -10,3 +10,4 @@ gem 'rspec'
 gem 'newrelic_rpm', require: false
 gem 'unicorn', require: false
 gem 'rollbar', require: false
+gem 'sinatra-logentries', require: false
