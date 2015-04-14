@@ -8,6 +8,5 @@ gem 'refile', git: 'https://github.com/refile/refile.git', ref: '6a25a2405964e6c
 gem 'rake'
 gem 'rspec'
 gem 'newrelic_rpm', require: false
-gem 'puma', require: false
 gem 'unicorn', require: false
 gem 'rollbar', require: false
