@@ -45,6 +45,12 @@ configure :staging, :production do
 end
 
 jobmensa_assets_app = Rack::Builder.new do
+  if (authorized_domain = ENV['BLITZ_AUTHORIZED_DOMAIN'])
+    map "/#{authorized_domain}" do
+      blitz_app = Sinatra.new { get('/') { '42' } }
+      blitz_app.run!
+    end
+  end
   map '/attachments' do
     run Refile::App
   end
