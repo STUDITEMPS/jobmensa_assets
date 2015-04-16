@@ -13,18 +13,13 @@ require 'jobmensa_assets'
 require 'jobmensa_assets/config'
 require 'refile/app'
 
-# init logger, not needed if inside of a rails app
-require 'logging'
-logger = Logging.logger['default_logger']
-logger.add_appenders \
-  Logging.appenders.rolling_file "log/#{settings.environment}.log", keep: 5, age: 'daily'
-if [:test, :development].include? settings.environment
-  logger.level = :debug
+if logentries_key = ENV['LOGENTRIES_TOKEN']
+  require 'le'
+  Refile.logger = Le.new(logentries_key, log_level: Logger::INFO)
 else
-  logger.level = :info
+  Refile.logger = Logger.new("log/#{settings.environment}.log")
+  Refile.logger.level = Logger::DEBUG
 end
-Refile.logger = logger
-
 
 # configure rollbar
 if rollbar_key = ENV['ROLLBAR_ACCESS_TOKEN']
@@ -32,12 +27,6 @@ if rollbar_key = ENV['ROLLBAR_ACCESS_TOKEN']
   Rollbar.configure do |config|
     config.access_token = rollbar_key
   end
-end
-
-# configure logentries
-if logentries_key = ENV['LOGENTRIES_TOKEN']
-  require 'sinatra-logentries'
-  Sinatra::Logentries.token = logentries_key
 end
 
 # configure newrelic
