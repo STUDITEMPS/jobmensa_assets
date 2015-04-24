@@ -3,9 +3,13 @@ require 'degu'
 module JobmensaAssets
   enum :AttachmentType do
     field :content_type
-
+    
+    # Path for image if no thumnail is available
+    field :default_thumbnail_path
+        
     Image(
-      content_type: ['image/jpeg', 'image/gif', 'image/png']
+      content_type: ['image/jpeg', 'image/gif', 'image/png'],
+      default_thumbnail_path: ''
     )
 
     Spreadsheet(
@@ -13,11 +17,13 @@ module JobmensaAssets
         'application/vnd.ms-excel', 'application/excel', # xls
         'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', # xlsx
         'application/vnd.oasis.opendocument.spreadsheet' # ods
-      ]
+      ],
+      default_thumbnail_path: 'jobmensa/attachment-tables.png'
     )
 
     PDF(
-      content_type: ['application/pdf']
+      content_type: ['application/pdf'],
+      default_thumbnail_path: 'jobmensa/attachment-pdf.png'
     )
 
     Document(
@@ -26,7 +32,8 @@ module JobmensaAssets
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document', # docx
         'application/vnd.oasis.opendocument.text', # odt
         'application/rtf', 'application/x-rtf', 'text/rtf', 'text/x-rtf' # rtf
-      ]
+      ],
+      default_thumbnail_path: 'jobmensa/attachment-text.png'
     )
 
     def self.content_type(type)
@@ -43,7 +50,13 @@ module JobmensaAssets
         content_type.each_with_object([]) { |type, memo| memo << MIME::Types[type].flat_map(&:extensions) }.flatten.uniq
       end
     end
-
+    
+    def self.attachment_type_for(content_type)
+      all.select do |attachment_type|
+        attachment_type.content_type.include? content_type
+      end.first
+    end
+    
     def self.max_filesize(_type)
       Refile.cache.max_size
     end
