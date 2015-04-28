@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jobmensa_assets (0.3.0)
+    jobmensa_assets (0.4.0)
       aws-sdk (>= 1.55, < 2)
       degu
       mini_magick
@@ -42,7 +42,7 @@ GEM
     mime-types (2.5)
     mini_magick (4.2.3)
     mini_portile (0.6.2)
-    minitest (5.6.0)
+    minitest (5.6.1)
     multi_json (1.11.0)
     netrc (0.10.3)
     newrelic_rpm (3.11.2.286)
