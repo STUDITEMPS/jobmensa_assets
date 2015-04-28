@@ -1,3 +1,13 @@
+GIT
+  remote: https://github.com/refile/refile.git
+  revision: 25c9e58a97e9f56f6a0a9a9fe190be160d2e0ad8
+  ref: 25c9e58a97e9f56f6a0a9a9fe190be160d2e0ad8
+  specs:
+    refile (0.5.3)
+      mime-types
+      rest-client (~> 1.7.2)
+      sinatra (~> 1.4.5)
+
 PATH
   remote: .
   specs:
@@ -53,10 +63,6 @@ GEM
       rack
     raindrops (0.13.0)
     rake (10.4.2)
-    refile (0.5.4)
-      mime-types
-      rest-client (~> 1.7.2)
-      sinatra (~> 1.4.5)
     rest-client (1.7.3)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
@@ -97,7 +103,7 @@ DEPENDENCIES
   le
   newrelic_rpm
   rake
-  refile
+  refile!
   rollbar
   rspec
   unicorn
