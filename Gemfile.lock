@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jobmensa_assets (0.4.1)
+    jobmensa_assets (0.5.0)
       degu
       rack
       refile
