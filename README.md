@@ -1,2 +1,2 @@
 # jobmensa_assets
-Refile app for out images
+Refile app for our images

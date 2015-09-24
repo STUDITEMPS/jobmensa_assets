@@ -8,6 +8,7 @@ Refile.configure do |config|
     config.cache = Refile::Backend::FileSystem.new('tmp/refile/cache', max_size: max_size)
     config.store = Refile::Backend::FileSystem.new('tmp/refile/store', max_size: max_size)
   else
+    require 'refile/s3'
     aws = {
       access_key_id: ENV['AWS_ACCESS_KEY'],
       secret_access_key: ENV['AWS_SECRET_KEY'],
@@ -16,8 +17,8 @@ Refile.configure do |config|
       max_size: max_size
     }
 
-    config.cache = Refile::Backend::S3.new(prefix: 'cache', **aws)
-    config.store = Refile::Backend::S3.new(prefix: 'store', **aws)
+    config.cache = Refile::S3.new(prefix: 'cache', **aws)
+    config.store = Refile::S3.new(prefix: 'store', **aws)
   end
 
   # Secretkey for signing urls
@@ -32,7 +33,7 @@ Refile.configure do |config|
   unless environment == 'test' # go to the app server
     host = ENV['REFILE_HOST'] || ENV['HOST_NAME']
     # cloudfront or our server
-    config.host = "//#{host}"
+    config.cdn_host = "//#{host}"
   end
 
   # Delete default processors and use our own processors defined below
