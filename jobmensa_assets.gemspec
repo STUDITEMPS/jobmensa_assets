@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'sinatra'
   spec.add_dependency 'refile'
   spec.add_dependency 'refile-s3'
-  spec.add_dependency 'mini_magick'
+  spec.add_dependency 'refile-mini_magick'
   spec.add_dependency 'rack'
   spec.add_dependency 'degu'
 

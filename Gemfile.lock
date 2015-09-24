@@ -3,9 +3,9 @@ PATH
   specs:
     jobmensa_assets (0.4.1)
       degu
-      mini_magick
       rack
       refile
+      refile-mini_magick
       refile-s3
       sinatra
 
@@ -41,6 +41,9 @@ GEM
       mime-types
       rest-client (~> 1.8)
       sinatra (~> 1.4.5)
+    refile-mini_magick (0.2.0)
+      mini_magick (~> 4.0)
+      refile (~> 0.5)
     refile-s3 (0.2.0)
       aws-sdk (~> 2.0)
       refile (~> 0.6.0)

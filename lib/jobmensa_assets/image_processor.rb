@@ -1,10 +1,10 @@
 require 'refile'
-require 'refile/image_processing'
+require 'refile/mini_magick'
 
 module JobmensaAssets
   ##
   # Processors for Refile
-  class ImageProcessor < Refile::ImageProcessor
+  class ImageProcessor < Refile::MiniMagick
 
     ## do nothing
     def default(img)
